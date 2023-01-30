@@ -22,13 +22,13 @@ public class EatingScript : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space))
         {
-            AudioManager.PlaySound();
+            EatingAudioManager.PlaySound();
             Hunger += 2 * Time.deltaTime;
             Mother.isEating = true;
         }
         else
         {
-            AudioManager.StopSound();
+            EatingAudioManager.StopSound();
             Mother.isEating = false;
         }
     }
