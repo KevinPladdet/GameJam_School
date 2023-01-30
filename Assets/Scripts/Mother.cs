@@ -8,6 +8,8 @@ public class Mother : MonoBehaviour
 
     public GameObject Door;
     bool StartRandom = true;
+    bool isLooking = false;
+    bool isCaught = false;
 
     void Start()
     {
@@ -16,28 +18,31 @@ public class Mother : MonoBehaviour
 
     void Update()
     {
-        if(StartRandom == true)
+        if(StartRandom)
         {
             StartCoroutine(MotherComes());
+        }
+
+        if (Input.GetKey(KeyCode.Space) && isLooking && !isCaught)
+        {
+            Debug.Log("You got caught!");
+            isCaught = true;
+            Time.timeScale = 0f;
+            //open up defeat screen
         }
     }
 
     IEnumerator MotherComes()
     {
-        yield return new WaitForSeconds(Random.Range(5, 15));
+        StartRandom = false;
+        yield return new WaitForSeconds(Random.Range(3, 12));
         Door.SetActive(false);
         Debug.Log("Mother appeared");
         yield return new WaitForSeconds(1);
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            Debug.Log("You got caught!");
-            //open up defeat screen
-        }
-        yield return new WaitForSeconds(4);
+        isLooking = true;
+        yield return new WaitForSeconds(Random.Range(1, 2));
         Door.SetActive(true);
-        StartRandom = false;
-        yield return new WaitForSeconds(1);
+        isLooking = false;
         StartRandom = true;
-
     }
 }
