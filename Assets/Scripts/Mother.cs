@@ -6,7 +6,10 @@ public class Mother : MonoBehaviour
 {
     public static bool isEating;
 
-    public GameObject Door;
+    public GameObject DoorClosed;
+    public GameObject DoorWarning;
+    public GameObject DoorOpen;
+
     bool StartRandom = true;
     bool isLooking = false;
     bool isCaught = false;
@@ -36,12 +39,16 @@ public class Mother : MonoBehaviour
     {
         StartRandom = false;
         yield return new WaitForSeconds(Random.Range(3, 12));
-        Door.SetActive(false);
+        DoorClosed.SetActive(false);
+        DoorWarning.SetActive(true);
         Debug.Log("Mother appeared");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Random.Range(0.5f, 1));
+        DoorWarning.SetActive(false);
+        DoorOpen.SetActive(true);
         isLooking = true;
         yield return new WaitForSeconds(Random.Range(1, 2));
-        Door.SetActive(true);
+        DoorOpen.SetActive(false);
+        DoorClosed.SetActive(true);
         isLooking = false;
         StartRandom = true;
     }
