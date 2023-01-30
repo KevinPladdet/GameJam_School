@@ -7,16 +7,16 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    private float startTime;
+    private float startTime = 121f;
 
     void Start()
     {
-        startTime = Time.time;
+        // startTime = Time.time;
     }
 
     void Update()
     {
-        float t = Time.time - startTime;
+        int t = (int)(startTime - Time.time);
 
         string minutes = ((int)t / 60).ToString();
         float secI = (t % 60);
@@ -27,5 +27,12 @@ public class Timer : MonoBehaviour
         }
         seconds += (t % 60).ToString("f0");
         timerText.text = minutes + ":" + seconds;
+
+        if (t <= 0)
+        {
+            Debug.Log("out of time");
+            Time.timeScale = 0f;
+            //activate defeat screen
+        }
     }
 }
