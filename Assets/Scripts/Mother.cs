@@ -23,7 +23,6 @@ public class Mother : MonoBehaviour
 
     IEnumerator MotherComes()
     {
-        Debug.Log("Mother can appear now");
         yield return new WaitForSeconds(Random.Range(5, 15));
         Door.SetActive(false);
         Debug.Log("Mother appeared");
