@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EatingScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private const float MAX_HUNGER = 100f;
+
+    public float Hunger = MAX_HUNGER;
+
+    private Image HungerBar;
+
     void Start()
     {
-        
+        HungerBar = GetComponent<Image>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        HungerBar.fillAmount = Hunger / MAX_HUNGER;
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            AudioManager.PlaySound();
+            Hunger += 2 * Time.deltaTime;
+        }
+        else
+        {
+            AudioManager.StopSound();
+        }
     }
 }
