@@ -26,7 +26,7 @@ public class EatingScript : MonoBehaviour
             {
                 EatingAudioManager.PlaySound();
             }
-            Hunger += 2 * Time.deltaTime;
+            Hunger += 1.6f * Time.deltaTime;
             Mother.isEating = true;
         }
         else
