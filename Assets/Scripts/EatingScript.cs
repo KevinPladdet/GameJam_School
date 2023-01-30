@@ -24,10 +24,12 @@ public class EatingScript : MonoBehaviour
         {
             AudioManager.PlaySound();
             Hunger += 2 * Time.deltaTime;
+            Mother.isEating = true;
         }
         else
         {
             AudioManager.StopSound();
+            Mother.isEating = false;
         }
     }
 }

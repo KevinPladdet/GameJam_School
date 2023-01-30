@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mother : MonoBehaviour
 {
+    public static bool isEating;
 
     public GameObject Door;
     bool StartRandom = true;
