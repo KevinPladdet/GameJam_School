@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mother : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class Mother : MonoBehaviour
     public GameObject DoorClosed;
     public GameObject DoorWarning;
     public GameObject DoorOpen;
+    public GameObject LostImage;
 
     public static bool Peeking;
     public static bool Entering;
     public static bool Leaving;
+    bool winActivate = false;
 
     bool StartRandom = true;
     bool isLooking = false;
@@ -35,7 +38,24 @@ public class Mother : MonoBehaviour
             Debug.Log("You got caught!");
             isCaught = true;
             Time.timeScale = 0f;
-            //open up defeat screen
+
+            LostImage.SetActive(true);
+            winActivate = true;
+        }
+
+
+        if(winActivate)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Time.timeScale = 1f;
+                SceneManager.LoadScene("Kevin Scene");
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Application.Quit();
+            }
         }
     }
 

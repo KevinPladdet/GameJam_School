@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EatingScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EatingScript : MonoBehaviour
 
     public GameObject Idle;
     public GameObject Eating;
+    public GameObject WinImage;
 
     void Start()
     {
@@ -51,6 +53,23 @@ public class EatingScript : MonoBehaviour
                 EatingAudioManager.StopEatSound();
                 MomSoundManager.StopMomSound();
                 DoorSoundManager.StopSound();
+            }
+        }
+
+        if(Hunger >= 100)
+        {
+            WinImage.SetActive(true);
+            Time.timeScale = 0f;
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Time.timeScale = 1f;
+                SceneManager.LoadScene("Kevin Scene");
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Application.Quit();
             }
         }
     }
