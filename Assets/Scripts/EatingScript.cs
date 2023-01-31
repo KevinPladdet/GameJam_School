@@ -50,6 +50,7 @@ public class EatingScript : MonoBehaviour
             {
                 EatingAudioManager.StopEatSound();
                 MomSoundManager.StopMomSound();
+                DoorSoundManager.StopSound();
             }
         }
     }
