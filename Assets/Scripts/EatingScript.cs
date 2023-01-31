@@ -7,13 +7,19 @@ public class EatingScript : MonoBehaviour
 {
     private const float MAX_HUNGER = 100f;
 
-    public float Hunger = MAX_HUNGER;
+    public static float Hunger = MAX_HUNGER;
 
     private Image HungerBar;
 
+    public GameObject Idle;
+    public GameObject Eating;
+
     void Start()
     {
+        Hunger = 0f;
         HungerBar = GetComponent<Image>();
+        Idle.SetActive(true);
+        Eating.SetActive(false);
     }
 
     void Update()
@@ -25,14 +31,25 @@ public class EatingScript : MonoBehaviour
             if (Time.timeScale != 0f)
             {
                 EatingAudioManager.PlaySound();
+                Idle.SetActive(false);
+                Eating.SetActive(true);
             }
             Hunger += 1.6f * Time.deltaTime;
             Mother.isEating = true;
         }
         else
         {
-            EatingAudioManager.StopSound();
-            Mother.isEating = false;
+            if(Mother.isCaught == false)
+            {
+                EatingAudioManager.StopSound();
+                Idle.SetActive(true);
+                Eating.SetActive(false);
+                Mother.isEating = false;
+            }
+            if (Mother.isCaught == true)
+            {
+                EatingAudioManager.StopSound();
+            }
         }
     }
 }

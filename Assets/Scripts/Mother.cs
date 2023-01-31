@@ -12,7 +12,7 @@ public class Mother : MonoBehaviour
 
     bool StartRandom = true;
     bool isLooking = false;
-    bool isCaught = false;
+    public static bool isCaught = false;
 
     void Start()
     {
