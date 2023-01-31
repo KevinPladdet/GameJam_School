@@ -30,7 +30,7 @@ public class EatingScript : MonoBehaviour
         {
             if (Time.timeScale != 0f)
             {
-                EatingAudioManager.PlaySound();
+                EatingAudioManager.PlayEatSound();
                 Idle.SetActive(false);
                 Eating.SetActive(true);
             }
@@ -41,14 +41,15 @@ public class EatingScript : MonoBehaviour
         {
             if(Mother.isCaught == false)
             {
-                EatingAudioManager.StopSound();
+                EatingAudioManager.StopEatSound();
                 Idle.SetActive(true);
                 Eating.SetActive(false);
                 Mother.isEating = false;
             }
             if (Mother.isCaught == true)
             {
-                EatingAudioManager.StopSound();
+                EatingAudioManager.StopEatSound();
+                MomSoundManager.StopMomSound();
             }
         }
     }

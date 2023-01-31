@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EatingAudioManager : MonoBehaviour
+public class MomSoundManager : MonoBehaviour
 {
     private static AudioSource _audioSource;
 
@@ -11,13 +11,13 @@ public class EatingAudioManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public static void PlayEatSound()
+    public static void PlayMomSound()
     {
         if (_audioSource.isPlaying) return;
         _audioSource.Play();
     }
 
-    public static void StopEatSound()
+    public static void StopMomSound()
     {
         _audioSource.Stop();
     }

@@ -10,6 +10,10 @@ public class Mother : MonoBehaviour
     public GameObject DoorWarning;
     public GameObject DoorOpen;
 
+    public static bool Peeking;
+    public static bool Entering;
+    public static bool Leaving;
+
     bool StartRandom = true;
     bool isLooking = false;
     public static bool isCaught = false;
@@ -39,17 +43,28 @@ public class Mother : MonoBehaviour
     {
         StartRandom = false;
         yield return new WaitForSeconds(Random.Range(3, 12));
+        Peeking = true;
         DoorClosed.SetActive(false);
         DoorWarning.SetActive(true);
         Debug.Log("Mother appeared");
-        yield return new WaitForSeconds(Random.Range(0.40f, 1));
+        yield return new WaitForSeconds(Random.Range(0.4f, 0.7f));
+        Peeking = false;
+        Entering = true;
         DoorWarning.SetActive(false);
         DoorOpen.SetActive(true);
+        MomSoundManager.PlayMomSound();
         isLooking = true;
-        yield return new WaitForSeconds(Random.Range(1, 2));
+        yield return new WaitForSeconds(Random.Range(2, 3));
+        DoorSoundManager.StopSound();
+        Entering = false;
+        Leaving = true;
         DoorOpen.SetActive(false);
         DoorClosed.SetActive(true);
+        MomSoundManager.StopMomSound();
         isLooking = false;
+        yield return new WaitForSeconds(0.2f);
+        Leaving = false;
+        DoorSoundManager.StopSound();
         StartRandom = true;
     }
 }
