@@ -35,6 +35,7 @@ public class DoorSoundManager : MonoBehaviour
     {
         _audioSource.clip = creak;
         if (_audioSource.isPlaying) return;
+        _audioSource.volume = 0.5f;
         _audioSource.Play();
         Debug.Log("play creak");
     }
@@ -42,12 +43,14 @@ public class DoorSoundManager : MonoBehaviour
     {
         _audioSource.clip = open;
         if (_audioSource.isPlaying) return;
+        _audioSource.volume = 1;
         _audioSource.Play();
     }
     public void PlayCloseSound()
     {
         _audioSource.clip = close;
         if (_audioSource.isPlaying) return;
+        _audioSource.volume = 1;
         _audioSource.Play();
     }
 
