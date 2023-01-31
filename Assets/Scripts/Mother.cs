@@ -42,7 +42,7 @@ public class Mother : MonoBehaviour
         DoorClosed.SetActive(false);
         DoorWarning.SetActive(true);
         Debug.Log("Mother appeared");
-        yield return new WaitForSeconds(Random.Range(0.45f, 1));
+        yield return new WaitForSeconds(Random.Range(0.40f, 1));
         DoorWarning.SetActive(false);
         DoorOpen.SetActive(true);
         isLooking = true;
